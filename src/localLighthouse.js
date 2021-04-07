@@ -117,6 +117,7 @@ export const localLighthouse = async ({
     report,
     emulatedFormFactor,
     scores
+    rawData: result
   };
 };
 
