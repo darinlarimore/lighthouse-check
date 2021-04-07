@@ -5,6 +5,7 @@ import lighthouseDefaultConfig, { throttling } from './lighthouseConfig';
 import options from './lighthouseOptions';
 import writeResults from './helpers/writeResults';
 import { NAME } from './constants';
+import createResponseData from './createResponseData';
 
 const getScoresFromFloat = scores =>
   Object.keys(scores).reduce(
@@ -110,14 +111,14 @@ export const localLighthouse = async ({
     progressiveWebApp: get(result, 'categories.pwa.score'),
     seo: get(result, 'categories.seo.score')
   });
-
+  const rawResults = createResponseData(result, emulatedFormFactor);
   return {
     url,
     localReport,
     report,
     emulatedFormFactor,
-    scores
-    rawData: result
+    scores,
+    rawData: rawResults
   };
 };
 
